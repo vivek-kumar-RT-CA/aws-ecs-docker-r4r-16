@@ -1,1 +1,9 @@
-
+version: 0.0
+Resources:
+  - TargetService:
+      Type: AWS::ECS::Service
+      Properties:
+        TaskDefinition: "arn:aws:ecs:us-west-2:986672551393:task-definition/aws-esc-r4r-task-2024:1"
+        LoadBalancerInfo:
+          ContainerName: "exp-code-pipeline"
+          ContainerPort: 3000
