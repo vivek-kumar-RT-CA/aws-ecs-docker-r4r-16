@@ -6,4 +6,22 @@ Resources:
         TaskDefinition: "arn:aws:ecs:us-west-2:986672551393:cluster/aws-ecs-r4r-2024"
         LoadBalancerInfo:
           ContainerName: "exp-code-pipeline"
-          ContainerPort: 3000
+          ContainerPort: 3000  # Adjust this port according to your application's requirements
+Hooks:
+  BeforeInstall:
+    - location: "scripts/pre_install.sh"
+      timeout: 300
+      runas: "root"
+  AfterInstall:
+    - location: "scripts/post_install.sh"
+      timeout: 300
+      runas: "root"
+  ApplicationStart:
+    - location: "scripts/start_application.sh"
+      timeout: 300
+      runas: "root"
+  ValidateService:
+    - location: "scripts/validate_service.sh"
+      timeout: 300
+      runas: "root"
+
